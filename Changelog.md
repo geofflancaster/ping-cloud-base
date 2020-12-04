@@ -7,6 +7,7 @@
 - Automated deployment of PA and PF customer license keys
 - Updated PA-WAS, PF, and PA
 - Reduced logging noise
+- Flux no longer caches docker images
 
 _Changes:_
 
