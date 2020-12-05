@@ -113,7 +113,7 @@ spec:
             memory: "1Gi"
           requests:
             memory: "512Mi"
-            cpu: "700m"
+            cpu: "200m"
         env:
         - name: P14C_ENVIRONMENT_ID
           valueFrom:
