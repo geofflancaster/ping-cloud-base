@@ -29,11 +29,11 @@ spec:
           name: stunnel
         resources:
           requests:
-            memory: "4Gi"
-            cpu: "1"
+            memory: "128Mi"
+            cpu: "20m"
           limits:
-            memory: "4Gi"
-            cpu: "1"
+            memory: "256Mi"
+            cpu: "200m"
         envFrom:
         - configMapRef:
             name: pingdirectory-environment-variables

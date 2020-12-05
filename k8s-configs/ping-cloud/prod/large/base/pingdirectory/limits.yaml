@@ -9,9 +9,19 @@ spec:
       containers:
       - name: pingdirectory
         resources:
+          limits:
+            memory: 64Gi
           requests:
             memory: 64Gi
             cpu: 14
+      - name: stunnel
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "1"
+          limits:
+            memory: "4Gi"
+            cpu: "1"            
   volumeClaimTemplates:
   - metadata:
       name: out-dir

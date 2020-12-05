@@ -12,7 +12,16 @@ spec:
           limits:
             memory: 7Gi
           requests:
+            memory: 7Gi
             cpu: 2
+      - name: stunnel
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "1"
+          limits:
+            memory: "1Gi"
+            cpu: "1"
   volumeClaimTemplates:
   - metadata:
       name: out-dir
