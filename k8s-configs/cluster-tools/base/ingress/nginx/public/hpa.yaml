@@ -3,7 +3,6 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: nginx-ingress-controller
 spec:
-# TODO add this back for prod
   minReplicas: 1
   maxReplicas: 1
   scaleTargetRef:

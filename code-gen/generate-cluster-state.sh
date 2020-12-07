@@ -501,7 +501,7 @@ mkdir -p "${FLUXCD_DIR}"
 mkdir -p "${K8S_CONFIGS_DIR}"
 
 cp ../.gitignore "${CLUSTER_STATE_DIR}"
-cp ../k8s-configs/cluster-tools/git-ops/flux/flux-command.sh "${K8S_CONFIGS_DIR}"
+cp ../k8s-configs/cluster-tools/base/git-ops/flux/flux-command.sh "${K8S_CONFIGS_DIR}"
 find "${TEMPLATES_HOME}" -type f -maxdepth 1 | xargs -I {} cp {} "${K8S_CONFIGS_DIR}"
 
 cp -pr ../profiles/aws/. "${CLUSTER_STATE_DIR}"/profiles
