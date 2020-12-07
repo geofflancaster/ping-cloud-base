@@ -5,7 +5,7 @@ resources:
 - ${K8S_GIT_URL}/k8s-configs/cluster-tools/${KUSTOMIZE_BASE}?ref=${K8S_GIT_BRANCH}
 
 # Include flux CD here so flux can update itself in the future
-- ${K8S_GIT_URL}/k8s-configs/base/git-ops?ref=${K8S_GIT_BRANCH}
+- ${K8S_GIT_URL}/k8s-configs/cluster-tools/base/git-ops?ref=${K8S_GIT_BRANCH}
 - known-hosts-config.yaml
 
 patchesStrategicMerge:
