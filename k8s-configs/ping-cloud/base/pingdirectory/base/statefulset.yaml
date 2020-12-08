@@ -110,9 +110,9 @@ spec:
           name: repl
         resources:
           limits:
-            memory: "5Gi"
+            memory: "4Gi"
           requests:
-            memory: "5Gi"
+            memory: "4Gi"
             cpu: "2"
         env:
         - name: P14C_ENVIRONMENT_ID
