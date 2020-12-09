@@ -110,7 +110,7 @@ spec:
           name: repl
         resources:
           requests:
-            memory: "1Gi"
+            memory: "768Mi"
             cpu: "500m"
         env:
         - name: P14C_ENVIRONMENT_ID
