@@ -22,6 +22,14 @@ spec:
           limits:
             memory: "1Gi"
             cpu: "1"
+      - name: pingdirectory-statsd-exporter
+        resources:
+          limits:
+            cpu: 100m
+            memory: 300Mi
+          requests:
+            cpu: 100m
+            memory: 300Mi
   volumeClaimTemplates:
   - metadata:
       name: out-dir

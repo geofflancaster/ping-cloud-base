@@ -110,8 +110,8 @@ spec:
           name: repl
         resources:
           requests:
-            memory: "768Mi"
-            cpu: "500m"
+            memory: "512Mi"
+            cpu: "300m"
         env:
         - name: P14C_ENVIRONMENT_ID
           valueFrom:
@@ -221,7 +221,7 @@ spec:
             memory: 300Mi
           requests:
             cpu: 100m
-            memory: 300Mi
+            memory: 100Mi
       volumes:
       - name: ssh-dir
         emptyDir: {}
