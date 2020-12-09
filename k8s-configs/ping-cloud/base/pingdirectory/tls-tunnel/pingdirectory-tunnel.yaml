@@ -29,10 +29,10 @@ spec:
           name: stunnel
         resources:
           requests:
-            memory: "128Mi"
+            memory: "32Mi"
             cpu: "20m"
           limits:
-            memory: "256Mi"
+            memory: "64Mi"
             cpu: "200m"
         envFrom:
         - configMapRef:
