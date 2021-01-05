@@ -123,7 +123,7 @@ spec:
               name: repl
           resources:
             limits:
-              memory: 2500Mi
+              memory: "2500Mi"
             requests:
               memory: "512Mi"
               cpu: "300m"
@@ -164,7 +164,6 @@ spec:
             - secretRef:
                 name: devops-secret
                 optional: true
-                defaultMode: 0644
           volumeMounts:
             # FIXME: fix home directory when containers run as non-root user
             - name: ssh-dir
