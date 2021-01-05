@@ -74,23 +74,12 @@ spec:
                 name: pingdirectory-environment-variables
           volumeMounts:
             - name: ssh-dir
-              emptyDir: {}
+              mountPath: /.ssh
             - name: data-dir
-              emptyDir: {}
-            - name: pingdirectory-init
-              configMap:
-                name: pingcommon-init
-                defaultMode: 0555
-            - name: topology-descriptor
-              configMap:
-                name: topology-descriptor
-                optional: true
-                defaultMode: 0644
+              mountPath: /data
             - name: ssh-id-key-secret
-              secret:
-                secretName: ssh-id-key-secret
-                optional: true
-                defaultMode: 0400
+              mountPath: /id_rsa
+              subPath: id_rsa
             - name: known-hosts-config
               mountPath: /known_hosts
               subPath: known_hosts
@@ -176,9 +165,27 @@ spec:
                 name: devops-secret
                 optional: true
                 defaultMode: 0644
+          volumeMounts:
+            # FIXME: fix home directory when containers run as non-root user
+            - name: ssh-dir
+              mountPath: /root/.ssh
+            - name: topology-descriptor
+              mountPath: /opt/staging/topology/descriptor.json
+              subPath: descriptor.json
+            - name: data-dir
+              mountPath: /opt/staging/topology.json
+              subPath: topology.json
+            - name: data-dir
+              mountPath: /usr/local/bin/kubectl
+              subPath: kubectl
+            - name: data-dir
+              mountPath: /usr/local/bin/skbn
+              subPath: skbn
             - name: out-dir
-              persistentVolumeClaim:
-                claimName: out-dir
+              mountPath: /opt/out
+            - name: pingdirectory-passwords
+              mountPath: /usr/local/secrets
+              readOnly: true
             - name: pingdirectory-license
               mountPath: /opt/in/instance/PingDirectory.lic
               subPath: PingDirectory.lic
