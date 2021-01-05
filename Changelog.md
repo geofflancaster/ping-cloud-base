@@ -13,6 +13,7 @@ _Changes:_
 - [X] PDO-1357 Rename PD CSD Exports to an easily retrievable name
 - [X] PDO-1362 PA log Collection for SIEM
 - [X] PDO-1376 Rewrite SIEM filters for PD to work with log files
+- [X] PDO-1384 Ensure PD pods run on PD nodes
 - [X] PDO-1385 Always import PA admin config query key-pair on start/restart
 - [X] PDO-1389 Remove unused secrets for Kibana, Grafana, and Prometheus from ping-cloud-base
 - [X] PDO-1421 Automate deploying the customer license key for PingFederate
@@ -33,7 +34,10 @@ _Changes:_
 - [X] PDO-1567 Pull GSA images from Frog registry
 - [X] PDO-1571 Update flux so it only has read-only access to the repo
 - [X] PDO-1572 Add PA upgrade logs to its own log stream
+- [X] PDO-1617 Fixed issue with LDAP users on PD being orphaned
 - [X] PDO-1622 Update flux to not cache docker images
+- [X] PDO-1631 Move all docker.io registry images to JFrog to avoid rate limit error
+- [X] PDO-1648 Set ARTIFACT_REPO_URL variable to be region specific
 
 ### 1.6.1
 
