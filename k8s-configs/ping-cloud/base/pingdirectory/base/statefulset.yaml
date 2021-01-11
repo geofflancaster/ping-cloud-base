@@ -45,14 +45,6 @@ spec:
                       values:
                         - pingdirectory
                 topologyKey: "failure-domain.beta.kubernetes.io/zone"
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: pingidentity.com/pd
-                    operator: In
-                    values:
-                      - "true"
       tolerations:
         - key: "pingidentity.com/pd-only"
           operator: "Equal"
