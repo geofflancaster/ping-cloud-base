@@ -45,6 +45,7 @@ spec:
                       values:
                         - pingdirectory
                 topologyKey: "failure-domain.beta.kubernetes.io/zone"
+      # this toleration has no effect in dev environments since we're running PD on cpu-optimized nodes
       tolerations:
         - key: "pingidentity.com/pd-only"
           operator: "Equal"
