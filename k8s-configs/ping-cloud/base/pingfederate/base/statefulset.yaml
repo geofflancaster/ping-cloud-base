@@ -106,10 +106,10 @@ spec:
                 optional: true
           resources:
             requests:
-              memory: "512Mi"
+              memory: "256Mi"
               cpu: "20m"
             limits:
-              memory: "1Gi"
+              memory: "1500Mi"
               cpu: "1"
           volumeMounts:
             # FIXME: fix home directory when containers run as non-root user
@@ -340,10 +340,10 @@ spec:
                 optional: true
           resources:
             requests:
-              memory: "512Mi"
+              memory: "256Mi"
               cpu: "20m"
             limits:
-              memory: "1Gi"
+              memory: "1500Mi"
               cpu: "1"
           volumeMounts:
             # FIXME: fix home directory when containers run as non-root user
