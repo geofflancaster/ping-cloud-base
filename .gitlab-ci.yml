@@ -1,39 +1,39 @@
 ## Pipeline stages ##
 stages:
-  - compile
-  - build
-  - unit-test
-  - integration-test
-  - chaos
-  - cleanup
+- compile
+- build
+- unit-test
+- integration-test
+- chaos
+- cleanup
 
 ## Global environment variables ##
 variables:
-  DELETE_ENV_AFTER_PIPELINE: "true"
+  DELETE_ENV_AFTER_PIPELINE: 'true'
 
 ## Compile stage ##
 compile:
   stage: compile
   tags:
-    - pd-eks-deploy
+  - pd-eks-deploy
   image: docker.corp.pingidentity.com:5000/platform-pipeline/k8s-deploy-tools:stable
   script:
-    - ./ci-scripts/compile/compile.sh
+  - ./ci-scripts/compile/compile.sh
   except:
     variables:
-      - $CI_COMMIT_MESSAGE =~ /\[skip pipeline\]/
+    - $CI_COMMIT_MESSAGE =~ /\[skip pipeline\]/
 
 ## Build stage ##
 deploy:
   stage: build
   tags:
-    - pd-eks-deploy
+  - pd-eks-deploy
   image: docker.corp.pingidentity.com:5000/platform-pipeline/k8s-deploy-tools:stable
   script:
-    - ./ci-scripts/build/deploy.sh
+  - ./ci-scripts/build/deploy.sh
   except:
     variables:
-      - $CI_COMMIT_MESSAGE =~ /\[skip pipeline\]/
+    - $CI_COMMIT_MESSAGE =~ /\[skip pipeline\]/
 
 ## Unit Test stage ##
 common-unit-tests:
@@ -95,24 +95,24 @@ ci-script-unit-tests:
 pd-integration-tests:
   stage: integration-test
   tags:
-    - pd-eks-deploy
+  - pd-eks-deploy
   image: docker.corp.pingidentity.com:5000/platform-pipeline/k8s-deploy-tools:stable
   script:
-    - ./ci-scripts/test/integration/run-integration-tests.sh pingdirectory
+  - ./ci-scripts/test/integration/run-integration-tests.sh pingdirectory
   except:
     variables:
-      - $CI_COMMIT_MESSAGE =~ /\[skip pipeline\]/
+    - $CI_COMMIT_MESSAGE =~ /\[skip pipeline\]/
 
 pf-integration-tests:
   stage: integration-test
   tags:
-    - pd-eks-deploy
+  - pd-eks-deploy
   image: docker.corp.pingidentity.com:5000/platform-pipeline/k8s-deploy-tools:stable
   script:
-    - ./ci-scripts/test/integration/run-integration-tests.sh pingfederate
+  - ./ci-scripts/test/integration/run-integration-tests.sh pingfederate
   except:
     variables:
-      - $CI_COMMIT_MESSAGE =~ /\[skip pipeline\]/
+    - $CI_COMMIT_MESSAGE =~ /\[skip pipeline\]/
 
 pa-integration-tests:
   stage: integration-test
@@ -151,21 +151,22 @@ common-integration-tests:
 chaos-tests:
   stage: chaos
   tags:
-    - pd-eks-deploy
+  - pd-eks-deploy
   image: docker.corp.pingidentity.com:5000/platform-pipeline/k8s-deploy-tools:stable
   script:
-    - ./ci-scripts/test/integration/run-integration-tests.sh chaos
+  - ./ci-scripts/test/integration/run-integration-tests.sh chaos
   except:
     variables:
-      - $CI_COMMIT_MESSAGE =~ /\[skip pipeline\]/
+    - $CI_COMMIT_MESSAGE =~ /\[skip pipeline\]/
+
 ## Cleanup stage ##
 cleanup:
   stage: cleanup
   tags:
-    - pd-eks-deploy
+  - pd-eks-deploy
   image: docker.corp.pingidentity.com:5000/platform-pipeline/k8s-deploy-tools:stable
   script:
-    - ./ci-scripts/cleanup/teardown.sh
+  - ./ci-scripts/cleanup/teardown.sh
   except:
     variables:
-      - $CI_COMMIT_MESSAGE =~ /\[skip pipeline\]/
+    - $CI_COMMIT_MESSAGE =~ /\[skip pipeline\]/
