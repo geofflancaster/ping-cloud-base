@@ -125,7 +125,7 @@ spec:
               name: repl
           resources:
             limits:
-              memory: "2Gi"
+              memory: "2560Mi"
             requests:
               memory: "1500Mi"
               cpu: "300m"
