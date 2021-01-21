@@ -194,10 +194,7 @@
 #### SCRIPT START ####
 
 # Ensure that this script works from any working directory.
-SCRIPT_HOME=$(
-  cd $(dirname ${0}) 2>/dev/null
-  pwd
-)
+SCRIPT_HOME=$(cd $(dirname ${0}) 2>/dev/null; pwd)
 pushd "${SCRIPT_HOME}" >/dev/null 2>&1
 
 # Source some utility methods.
@@ -518,7 +515,7 @@ cp ../k8s-configs/cluster-tools/base/git-ops/git-ops-command.sh "${K8S_CONFIGS_D
 find "${TEMPLATES_HOME}" -type f -maxdepth 1 | xargs -I {} cp {} "${K8S_CONFIGS_DIR}"
 
 cp -pr ../profiles/aws/. "${CLUSTER_STATE_DIR}"/profiles
-echo "${PING_CLOUD_BASE_COMMIT_SHA}" >"${TARGET_DIR}/pcb-commit-sha.txt"
+echo "${PING_CLOUD_BASE_COMMIT_SHA}" > "${TARGET_DIR}/pcb-commit-sha.txt"
 
 # Now generate the yaml files for each environment
 ALL_ENVIRONMENTS='dev test stage prod'
@@ -537,71 +534,71 @@ for ENV in ${ENVIRONMENTS}; do
 
   # The base URL for kustomization files and environment will be different for each CDE.
   case "${ENV}" in
-  dev | test)
-    export KUSTOMIZE_BASE='test'
-    ;;
-  stage)
-    export KUSTOMIZE_BASE='prod/x-small'
-    ;;
-  prod)
-    export KUSTOMIZE_BASE="prod/${SIZE}"
-    ;;
+    dev | test)
+      export KUSTOMIZE_BASE='test'
+      ;;
+    stage)
+      export KUSTOMIZE_BASE='prod/x-small'
+      ;;
+    prod)
+      export KUSTOMIZE_BASE="prod/${SIZE}"
+      ;;
   esac
 
   # Update the Let's encrypt server to use staging/production based on environment type.
   case "${ENV}" in
-  dev | test | stage)
-    export LETS_ENCRYPT_SERVER='https://acme-staging-v02.api.letsencrypt.org/directory'
-    ;;
-  prod)
-    export LETS_ENCRYPT_SERVER='https://acme-v02.api.letsencrypt.org/directory'
-    ;;
+    dev | test | stage)
+      export LETS_ENCRYPT_SERVER='https://acme-staging-v02.api.letsencrypt.org/directory'
+      ;;
+    prod)
+      export LETS_ENCRYPT_SERVER='https://acme-v02.api.letsencrypt.org/directory'
+      ;;
   esac
 
   # Set PF variables based on ENV
   case "${ENV}" in
-  dev | test | stage)
-    export PF_PD_BIND_PORT=1389
-    export PF_PD_BIND_PROTOCOL=ldap
-    export PF_PD_BIND_USESSL=false
-    ;;
-  prod)
-    export PF_PD_BIND_PORT=5678
-    export PF_PD_BIND_PROTOCOL=ldaps
-    export PF_PD_BIND_USESSL=true
-    ;;
+    dev | test | stage)
+      export PF_PD_BIND_PORT=1389
+      export PF_PD_BIND_PROTOCOL=ldap
+      export PF_PD_BIND_USESSL=false
+      ;;
+    prod)
+      export PF_PD_BIND_PORT=5678
+      export PF_PD_BIND_PROTOCOL=ldaps
+      export PF_PD_BIND_USESSL=true
+      ;;
   esac
 
   # Update the PF JVM limits based on environment.
   case "${ENV}" in
-  dev | test)
-    export PF_MIN_HEAP=256m
-    export PF_MAX_HEAP=512m
-    export PF_MIN_YGEN=128m
-    export PF_MAX_YGEN=256m
-    ;;
-  stage | prod)
-    export PF_MIN_HEAP=3072m
-    export PF_MAX_HEAP=3072m
-    export PF_MIN_YGEN=1536m
-    export PF_MAX_YGEN=1536m
-    ;;
+    dev | test)
+      export PF_MIN_HEAP=256mm
+      export PF_MAX_HEAP=512mm
+      export PF_MIN_YGEN=128m
+      export PF_MAX_YGEN=256m
+      ;;
+    stage | prod)
+      export PF_MIN_HEAP=3072m
+      export PF_MAX_HEAP=3072m
+      export PF_MIN_YGEN=1536m
+      export PF_MAX_YGEN=1536m
+      ;;
   esac
 
   # Set PA variables
   case "${ENV}" in
-  dev | test)
-    export PA_WAS_MIN_HEAP=1024m
-    export PA_WAS_MAX_HEAP=1024m
-    export PA_WAS_MIN_YGEN=512m
-    export PA_WAS_MAX_YGEN=512m
-    ;;
-  stage | prod)
-    export PA_WAS_MIN_HEAP=2048m
-    export PA_WAS_MAX_HEAP=2048m
-    export PA_WAS_MIN_YGEN=1024m
-    export PA_WAS_MAX_YGEN=1024m
-    ;;
+    dev | test)
+      export PA_WAS_MIN_HEAP=1024m
+      export PA_WAS_MAX_HEAP=1024m
+      export PA_WAS_MIN_YGEN=512m
+      export PA_WAS_MAX_YGEN=512m
+      ;;
+    stage | prod)
+      export PA_WAS_MIN_HEAP=2048m
+      export PA_WAS_MAX_HEAP=2048m
+      export PA_WAS_MIN_YGEN=1024m
+      export PA_WAS_MAX_YGEN=1024m
+      ;;
   esac
   export PA_WAS_GCOPTION='-XX:+UseParallelGC'
 
@@ -612,8 +609,8 @@ for ENV in ${ENVIRONMENTS}; do
   export PA_GCOPTION='-XX:+UseParallelGC'
 
   "${IS_BELUGA_ENV}" &&
-    export CLUSTER_NAME="${TENANT_NAME}" ||
-    export CLUSTER_NAME="${ENV##*-}"
+      export CLUSTER_NAME="${TENANT_NAME}" ||
+      export CLUSTER_NAME="${ENV##*-}"
 
   CLUSTER_NAME_LC="$(echo "${CLUSTER_NAME}" | tr '[:upper:]' '[:lower:]')"
   export CLUSTER_NAME_LC="${CLUSTER_NAME_LC}"
